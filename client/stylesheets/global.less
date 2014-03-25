@@ -1,0 +1,70 @@
+@import 'variables';
+@import 'mixins';
+
+/* ===============================
+    GLOBAL STYLES
+   =============================== */
+
+img {
+  max-width: 100%;
+}
+
+.glyphicon {
+    cursor: pointer;
+    font-size: 13px;
+    color: #d4d4d4;
+}
+
+
+body {
+    font-family: "FontAwesome";
+    font-weight: 300;
+    font-size: 16px;
+    color: #555;
+    //background: #fafafa;
+    padding-left: 0;
+
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+}
+
+.navbar-default {
+    background-color: #fff;
+    border-color: #e5e5e5;
+    margin-bottom: 30px;
+}
+.navbar > .container .navbar-brand{
+    font-family: cursive;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+
+.grid-block, .main, .reflection, .comments li, .comment-form { 
+    //background: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+
+// MISCELLANEOUS
+
+.browser-warning {
+  background: #BD3535;
+  color: #fff;
+  padding: 0.5em 0;
+  text-align: center;
+
+   a {
+    color: #fff;
+    text-decoration: underline;
+  }
+}

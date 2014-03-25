@@ -1,0 +1,10 @@
+{
+  "packages": {
+    "iron-router": {},
+    "handlebars-server": {},
+    "moment": {},
+    "bootstrap-3": {},
+    "accounts-entry": {},
+    "reststop2": {}
+  }
+}

@@ -1,0 +1,86 @@
+@import '../../stylesheets/mixins';
+@import '../../stylesheets/variables';
+
+// DASHBOARD
+#searchForm {
+    -webkit-box-shadow: 0 0 0;
+    box-shadow: 0 0 0;
+    padding: 10px 0 0;
+    margin: 0 0 0;
+    
+}
+#dateInputString{
+    font-size: 20px;
+    color: #4a4747;
+    vertical-align: middle;
+}
+#changeDateLink{
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+#submitIcon {
+    font-size: 15px;
+    color: #4a4747;
+    vertical-align: middle;
+    
+}
+
+.tag{
+    font-size: 12px;
+    color: #466cc3;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.dateText {
+    float: right;
+    font-size: small;
+    color: #909090;
+}
+
+.reflection {
+  /* For modern browsers */
+  /* For IE 6/7 (trigger hasLayout) */
+  *zoom: 1;
+  -webkit-transition: all 300ms 0ms;
+  -webkit-transition-delay: ease-in;
+  -moz-transition: all 300ms 0ms ease-in;
+  -o-transition: all 300ms 0ms ease-in;
+  transition: all 300ms 0ms ease-in;
+  position: relative;
+  opacity: 1; }
+    .positive {
+        background: rgba(239, 253, 241, 0.52);
+    }
+    .negative {
+        background: rgba(253, 239, 240, 0.54);
+    }
+  .post:after {
+    clear: both; }
+  .post.invisible {
+    opacity: 0; }
+  .post .upvote {
+    display: block;
+    margin: 7px 12px 0 0;
+    float: left; }
+  .post .post-content {
+    float: left; }
+    .post .post-content h3 {
+      margin: 0;
+      line-height: 1.4;
+      font-size: 18px; }
+      .post .post-content h3 a {
+        display: inline-block;
+        margin-right: 5px; }
+      .post .post-content h3 span {
+        font-weight: normal;
+        font-size: 14px;
+        display: inline-block;
+        color: #aaaaaa; }
+    .post .post-content p {
+      margin: 0; }
+  .post .discuss {
+    display: block;
+    float: right;
+    margin-top: 7px; }
