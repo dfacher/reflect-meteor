@@ -19,6 +19,7 @@ Session.set('isChangeDate', false);
 Session.set('sort_options', {date: -1, direction: -1});
 Session.set('filters', {});
 Session.set('tags', []);
+Session.set('editing', null);
 
 
 //////////////////// Helpers ///////////////////////////
@@ -30,7 +31,7 @@ Template.selectedTags.helpers({
     
     tags: function(){
         return Session.get('tags');
-    },
+    }
 
 });
 
@@ -41,7 +42,7 @@ Template.newNote.helpers({
     
     currentDate: function(){
         return moment(new Date()).format("MMMM DD");
-    },
+    }
 
 });
 
@@ -49,7 +50,7 @@ Template.newNote.helpers({
 Template.noteList.helpers({
     reflection: function(){
         return Reflections.find(Session.get('filters'), {sort: Session.get('sort_options')});
-    },
+    }
 
 });
 
@@ -71,6 +72,11 @@ Template.reflectionElement.helpers({
     displayTag: function(){
         return this.toString();
     },
+
+    // check for editing of current element
+    editing: function(){
+        return this._id === Session.get('editing');
+    }
 });
 
 //////////////////// Event Handlers ////////////////////
@@ -78,7 +84,6 @@ Template.header.events({
     'submit form': function(e, tmpl) {
         e.preventDefault();
         var str = $(e.target).find('[name=searchString]').val();
-        console.log(str);
         var query = Session.get('filters');
         
         if(str === ""){
@@ -150,7 +155,6 @@ Template.newNote.events({
                            function(error, idd){
                                 if(idd) {
                                     insertedItem = Reflections.findOne({_id: idd});
-                                    console.log(insertedItem);
                                     Meteor.call('insertTag', insertedItem);
                                     //return insertedItem;
                                 }
@@ -159,7 +163,7 @@ Template.newNote.events({
                                     insertedItem = null;
                                 }
                            });
-    },
+    }
 
 });
 
@@ -185,6 +189,21 @@ Template.reflectionElement.events({
       e.preventDefault();
       Reflections.remove(this._id);
   },
+
+    'click #editReflection': function (e) {
+        e.preventDefault();
+        Session.set('editing', this._id);
+    },
+
+    // Update database element: Find current element, replace body, insert again
+    'submit form': function(e, tmpl) {
+        e.preventDefault();
+        var newBodyText = $(e.target).find('[name=updatedBodyText]').val();
+
+        Reflections.update({_id: Session.get('editing')},
+                           {$set: {body: newBodyText, tags: genTags(newBodyText)}});
+        Session.set('editing', null);
+    }
 });
 
 //////////////////// Others ////////////////////////////

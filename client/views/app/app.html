@@ -54,9 +54,24 @@
 </template>
 
 <template name="reflectionElement">
+    <!-- Reflection wrapper coloring depending on direction class-->
     <div class="reflection {{directionText direction}}">
+        <!-- Body display depending on editing state-->
         <div class="reflection-content">
-            <span>{{body}}</span>
+            {{#if editing}}
+                <form class="form-inline" role="form">
+                    <div class="input-group">
+                        <input type="textarea" class="form-control" name="updatedBodyText" value="{{body}}">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" id="searchButton">
+                            <span class="glyphicon glyphicon-edit" id="saveEdit"></span>
+                        </button>
+                      </span>
+                    </div>
+                </form>
+            {{else}}
+                <span>{{body}}</span>
+            {{/if}}
         </div>
         <div class="reflection-context">
             <span class="glyphicon glyphicon-pencil" id="editReflection"></span>
