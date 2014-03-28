@@ -6,14 +6,13 @@
 //////////////////// Data & Stores ////////////////////
 
 Meteor.startup(function () {
- 
+    $('#dp3').datepicker();
 });
 
 Meteor.subscribe('reflections');
 Meteor.subscribe('tags');
 
 //////////////////// Session setters ////////////////////
-Session.set('isChangeDate', false);
 
 // Sort options
 Session.set('sort_options', {date: -1, direction: -1});
@@ -36,14 +35,14 @@ Template.selectedTags.helpers({
 });
 
 Template.newNote.helpers({
-    isChangeDate: function(){
-        return Session.get('isChangeDate');
-    },
-    
     currentDate: function(){
         return moment(new Date()).format("MMMM DD");
-    }
+    },
 
+    // returns current date as input for datepicker
+    today: function(){
+        return moment().format("YYYY-MM-DD");
+    }
 });
 
 
@@ -123,30 +122,19 @@ Template.selectedTags.events({
 
 
 Template.newNote.events({
-    'click #changeDateLink': function (e) {
-        e.preventDefault();
-        Session.set('isChangeDate', true);
-  },
-    
     'submit form': function(e, tmpl) {
         e.preventDefault();
-        
-        var date;
+
         var body = $(e.target).find('[name=textBody]').val();
         var direction = parseInt($(e.target).find('[name=options]:checked').val());
-        if (!Session.get('isChangeDate')){
-            date = moment().toDate();
+        var dateString = $(e.target).find('[name=date]').val();
+
+        //parse Datestring
+        try {
+            var date = moment(dateString).toDate();
         }
-        
-        else {
-            var dateString = $(e.target).find('[name=date]').val();
-            try {
-                date = moment(dateString).toDate();
-            }
-            catch(e) {
-                date = moment().toDate();
-                }
-            Session.set('isChangeDate', false);
+        catch(e) {
+            var date = moment().toDate(); //else file for today
         }
         
         var tags = genTags(body);
