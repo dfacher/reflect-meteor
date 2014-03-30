@@ -9,7 +9,7 @@ Meteor.methods({
           }
           Tags.insert(newTag);
           }
-  },
+  }
 });
 
 

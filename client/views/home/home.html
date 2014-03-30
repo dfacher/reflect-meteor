@@ -1,3 +1,18 @@
 <template name="home">
-  Welcome to my new meteor app
+    <div>
+        {{accountButtons}}
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="entry col-md-4 col-md-offset-4">
+                <div class="introContent">
+                    <h2 class="ReflectText">Reflections</h2>
+                    daily. made easy.
+                    <p></p>
+                    <a class="btn btn-default" href="{{pathFor 'app'}}" role="button">Get started</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>

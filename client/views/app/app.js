@@ -6,7 +6,7 @@
 //////////////////// Data & Stores ////////////////////
 
 Meteor.startup(function () {
-    $('#dp3').datepicker();
+
 });
 
 Meteor.subscribe('reflections');
@@ -139,7 +139,7 @@ Template.newNote.events({
         
         var tags = genTags(body);
         
-        Reflections.insert({date: date, body: body, direction: direction, tags: tags}, 
+        Reflections.insert({user: Meteor.userId(), date: date, body: body, direction: direction, tags: tags},
                            function(error, idd){
                                 if(idd) {
                                     insertedItem = Reflections.findOne({_id: idd});

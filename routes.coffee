@@ -1,12 +1,9 @@
 Router.map ->
   @route 'home',
-    path: '/' 
-
-  @route 'config',
-    path: '/config'
+    path: '/'
     
   @route 'app',
     path: '/app'
-
-    
-       
+    layoutTemplate: 'appLayout'
+    before: ->
+      AccountsEntry.signInRequired(@)
